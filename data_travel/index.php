@@ -1,25 +1,18 @@
 <?php
-$halaman = 'data-tiket-travel';
+$halaman = 'data_travel';
 require_once "../config/database.php";
-if (isset($_SESSION['id']))
-{
-    if ($_SESSION['peran']!="admin")
-      {
+if (isset($_SESSION['id'])) {
+    if ($_SESSION['peran'] != "admin") {
         unset($_SESSION['peran']);
         unset($_SESSION['username']);
         unset($_SESSION['nama']);
         unset($_SESSION['Id']);
-       echo "<script>window.location='../login/logout.php';</script>";    
-      } 
-      else
-      {
-        
-      }
- }
- else
- {
-   echo "<script>window.location='../login';</script>"; 
- }
+        echo "<script>window.location='../login/logout.php';</script>";
+    } else {
+    }
+} else {
+    echo "<script>window.location='../login';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +22,8 @@ if (isset($_SESSION['id']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php
-  include '../linksheet-admin.php';
-  ?>
+    include '../linksheet-admin.php';
+    ?>
 
 </head>
 
@@ -38,9 +31,9 @@ if (isset($_SESSION['id']))
     <div class="wrapper">
 
         <!-- Preloader -->
-        <!-- <div class="preloader flex-column justify-content-center align-items-center">
+        <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="../img/icon.png" alt="UPB" height="200" width="200">
-        </div> -->
+        </div>
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -88,10 +81,9 @@ if (isset($_SESSION['id']))
         <aside class="main-sidebar sidebar-dark-white elevation-4" style="background-color: #0000CD;">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link" style="background-color: #ffffff;">
-                <img src="../img/ayam.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: 1.0">
+                <img src="../img/ayam.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 1.0">
                 <span class="brand-text font-weight-light">
-                    <font color="black"><b>TIKET TRAVEL</b></font>
+                    <font color="black"><b>DATA TRAVEL</b></font>
                 </span>
             </a>
 
@@ -102,8 +94,8 @@ if (isset($_SESSION['id']))
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <?php
-        include '../menu-admin.php';
-        ?>
+                    include '../menu-admin.php';
+                    ?>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -127,35 +119,35 @@ if (isset($_SESSION['id']))
                                     <h3 class="card-title">
                                         <font color="#ffffff">
                                             <i class="fas fa-dumpster nav-icon"></i>
-                                            Data tiket travel
+                                            Data Travel
                                     </h3>
                                     </font>
                                     </h3>
                                 </div>
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-danger btn-md" data-toggle="modal"
-                                        style="background-color:#0000CD;" data-target="#modal-tambah"><i
-                                            class="fas fa-plus"></i>
-                                        Tambah Data Tiket</button>
+                                    <button type="button" class="btn btn-danger btn-md" data-toggle="modal" style="background-color:#0000CD;" data-target="#modal-tambah"><i class="fas fa-plus"></i>
+                                        Tambah Data Travel</button>
 
-                                    <table id="example1" name="example1"
-                                        class="table table-sm table-hover table-bordered table-striped deta">
+                                    <table id="example1" name="example1" class="table table-sm table-hover table-bordered table-striped deta">
                                         <thead>
                                             <tr>
                                                 <th bgcolor="#ffffff" style="width:5%">
-                                                    <font color="#000000">NO</font>
+                                                    <font color="#000000">ID</font>
                                                 </th>
                                                 <th bgcolor="#ffffff">
-                                                    <font color="#000000">PEMILIK</font>
+                                                    <font color="#000000">NAMA</font>
                                                 </th>
                                                 <th bgcolor="#ffffff">
-                                                    <font color="#000000">ALAMAT </font>
+                                                    <font color="#000000">KODE</font>
                                                 </th>
                                                 <th bgcolor="#ffffff">
-                                                    <font color="#000000">NO_TELP </font>
+                                                    <font color="#000000">NOMOR POLISI</font>
                                                 </th>
                                                 <th bgcolor="#ffffff">
-                                                    <font color="#000000">JUMLAH_KANDANG </font>
+                                                    <font color="#000000">KAPASITAS</font>
+                                                </th>
+                                                <th bgcolor="#ffffff">
+                                                    <font color="#000000">FOTO</font>
                                                 </th>
                                                 <th bgcolor="#ffffff" style="width:25%">
                                                     <center>
@@ -166,102 +158,88 @@ if (isset($_SESSION['id']))
                                         </thead>
                                         <tbody>
                                             <?php
-                     $no  = 1;
-                     $con = mysqli_connect('localhost','root','','skripsi');
-                      $query = "SELECT * FROM tb_kandang_mitra";
+                                            $no = 1;
+                                            $con = mysqli_connect('localhost', 'root', '', 'db_travel');
+                                            $query = "SELECT * FROM tb_travel";
 
-                            $sql_kandang = mysqli_query($con, $query) or die (mysqli_error($con));
+                                            $sql_travel = mysqli_query($con, $query) or die(mysqli_error($con));
 
-                            if (mysqli_num_rows($sql_kandang) > 0 )
-                            {
-                             while($data = mysqli_fetch_array($sql_kandang))
-                             {
-                                  ?>
-                                            <tr>
-                                                <td>
-                                                    <?=$no++;?>
-                                                </td>
+                                            if (mysqli_num_rows($sql_travel) > 0) {
+                                                while ($data = mysqli_fetch_array($sql_travel)) {
+                                            ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?= $no++; ?>
+                                                        </td>
 
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['nama']; ?>
+                                                            </h6>
+                                                        </td>
 
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['kode']; ?>
+                                                            </h6>
+                                                        </td>
 
-
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['pemilik'];?>
-                                                    </h6>
-                                                </td>
-
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['alamat_kandang'];?>
-                                                    </h6>
-                                                </td>
-
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['no_telp'];?>
-                                                    </h6>
-                                                </td>
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['jumlah_kandang'];?>
-                                                    </h6>
-                                                </td>
-
-
-
-                                                <td>
-                                                    <center>
-
-                                                        <a href="detailkandang.php?id=<?=$data['id_pemilik'];?>"
-                                                            class="btn btn-info btn-xs"><i class="fas fa-eye"></i>lihat
-                                                            kandang </a>
-
-                                                        <button type="button" class="btn btn-primary btn-xs"
-                                                            data-toggle="modal" data-id="<?=$data['id_pemilik']?>"
-                                                            data-nama_kandang="<?=$data['pemilik']?>"
-                                                            data-alamat_kandang="<?=$data['alamat_kandang']?>"
-                                                            data-target="#modal-edit"><i class="fas fa-edit"></i>
-                                                        </button>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['nomor_polisi']; ?>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['kapasitas']; ?>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['foto']; ?>
+                                                            </h6>
+                                                        </td>
 
 
 
-                                                        <?php
-                                $idsession     = $_SESSION['id'];
-                                $idlogin       = $data['id_pemilik'];
-                               
+                                                        <td>
+                                                            <center>
 
-                                if ($idsession==$idlogin)
-                                {
-                                    
-                                }
-                                else
-                                {
-                                  ?>
+                                                                <a href="detailkandang.php?id=<?= $data['id_pemilik']; ?>" class="btn btn-info btn-xs"><i class="fas fa-eye"></i>lihat
+                                                                    kandang </a>
 
-                                                        <a href="hapus.php?id_pemilik=<?=$data['id_pemilik'];?>"
-                                                            onclick="return confirm('Anda akan menghapus data kandang  [ <?=$data['pemilik'];?> ] ?')"
-                                                            class="btn btn-danger btn-xs"><i class="fas fa-trash"></i>
-                                                        </a>
-                                                </td>
-                                                </center>
+                                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-id="<?= $data['id_pemilik'] ?>" data-nama_kandang="<?= $data['pemilik'] ?>" data-alamat_kandang="<?= $data['alamat_kandang'] ?>" data-target="#modal-edit"><i class="fas fa-edit"></i>
+                                                                </button>
 
-                                                <?php
-                                }       
 
-                               ?>
-                                            </tr>
+
+                                                                <?php
+                                                                $idsession = $_SESSION['id'];
+                                                                $idlogin = $data['id_pemilik'];
+
+
+                                                                if ($idsession == $idlogin) {
+                                                                } else {
+                                                                ?>
+
+                                                                    <a href="hapus.php?id_pemilik=<?= $data['id_pemilik']; ?>" onclick="return confirm('Anda akan menghapus data kandang  [ <?= $data['pemilik']; ?> ] ?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i>
+                                                                    </a>
+                                                        </td>
+                                                        </center>
+
+                                                    <?php
+                                                                }
+
+                                                    ?>
+                                                    </tr>
 
                                             <?php
-                            }
+                                                }
+                                            } else {
+                                                echo "<tr><td colspan=\"11\" align=\"center\"><h6>Data Tidak Ditemukan!</h6></td></tr>";
+                                            }
 
-                          }
-                          else
-                          {
-                            echo "<tr><td colspan=\"11\" align=\"center\"><h6>Data Tidak Ditemukan!</h6></td></tr>";
-                          }
-
-                            ?>
+                                            ?>
 
 
 
@@ -274,12 +252,6 @@ if (isset($_SESSION['id']))
 
 
                                 </div>
-
-
-
-
-
-
 
                         </section>
                         <!-- right col -->
@@ -310,31 +282,27 @@ if (isset($_SESSION['id']))
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Pemilik
                                                     Kandang</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="nama" id="nama"
-                                                        required>
+                                                    <input type="text" class="form-control" name="nama" id="nama" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Alamat
                                                     Kandang</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="alamat" id="alamat"
-                                                        required>
+                                                    <input type="text" class="form-control" name="alamat" id="alamat" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-12 control-label">No Telp</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="telp" id="telp"
-                                                        required>
+                                                    <input type="text" class="form-control" name="telp" id="telp" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Jumlah
                                                     Kandang</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="kandang" id="kandang"
-                                                        required>
+                                                    <input type="text" class="form-control" name="kandang" id="kandang" required>
                                                 </div>
                                             </div>
 
@@ -343,12 +311,9 @@ if (isset($_SESSION['id']))
 
 
                                         <!-- /.card-body -->
-                                        <div class="modal-footer justify-content-between"
-                                            style="background-color:#0000CD;">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i
-                                                    class="fas fa-times"></i></button>
-                                            <button type="submit" name="insertdata" class="btn btn-secondary"
-                                                style="background-color:#0000CD"><i class="fas fa-download"></i> Simpan
+                                        <div class="modal-footer justify-content-between" style="background-color:#0000CD;">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                                            <button type="submit" name="insertdata" class="btn btn-secondary" style="background-color:#0000CD"><i class="fas fa-download"></i> Simpan
                                                 Data</button>
                                         </div>
                                     </div>
@@ -395,22 +360,19 @@ if (isset($_SESSION['id']))
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-12 control-label">Alamat Kandang</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="alamat_kandang"
-                                                id="alamat_kandang" required>
+                                            <input type="text" class="form-control" name="alamat_kandang" id="alamat_kandang" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-12 control-label">No Telp</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="no_telp" id="no_telp"
-                                                required>
+                                            <input type="text" class="form-control" name="no_telp" id="no_telp" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-12 control-label">Jumlah Kandang</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="jumlah_kandang"
-                                                id="jumlah_kandang" required>
+                                            <input type="text" class="form-control" name="jumlah_kandang" id="jumlah_kandang" required>
                                         </div>
                                     </div>
                                 </div>
@@ -418,10 +380,8 @@ if (isset($_SESSION['id']))
 
                                 <!-- /.card-body -->
                                 <div class="modal-footer justify-content-between" style="background-color:#e5eaf0;">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i
-                                            class="fas fa-times"></i></button>
-                                    <button type="submit" name="editmodal" class="btn btn-secondary"
-                                        style="background-color:#860a0e"><i class="fas fa-edit"></i> Edit Data</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                                    <button type="submit" name="editmodal" class="btn btn-secondary" style="background-color:#860a0e"><i class="fas fa-edit"></i> Edit Data</button>
                                 </div>
                             </div>
                 </form>
@@ -440,37 +400,37 @@ if (isset($_SESSION['id']))
 
     </div>
     <?php
-  include '../footer.php';
-  ?>
+    include '../footer.php';
+    ?>
 
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
     </div>
 
     <?php
-  include '../script-admin.php';
-  ?>
+    include '../script-admin.php';
+    ?>
 
 
     <script type="text/javascript">
-    $('#modal-edit').on('show.bs.modal', function(e) {
+        $('#modal-edit').on('show.bs.modal', function(e) {
 
-        //get data-id attribute of the clicked element
+            //get data-id attribute of the clicked element
 
-        var id = $(e.relatedTarget).data('id');
-        var username = $(e.relatedTarget).data('user');
-        var nama = $(e.relatedTarget).data('nama');
-
-
-        $(e.currentTarget).find('input[name="ided"]').val(id);
-        $(e.currentTarget).find('input[name="usered"]').val(username);
-        $(e.currentTarget).find('input[name="namaed"]').val(nama);
-        $(e.currentTarget).find('input[name="usered2"]').val(username);
+            var id = $(e.relatedTarget).data('id');
+            var username = $(e.relatedTarget).data('user');
+            var nama = $(e.relatedTarget).data('nama');
 
 
+            $(e.currentTarget).find('input[name="ided"]').val(id);
+            $(e.currentTarget).find('input[name="usered"]').val(username);
+            $(e.currentTarget).find('input[name="namaed"]').val(nama);
+            $(e.currentTarget).find('input[name="usered2"]').val(username);
 
 
-    });
+
+
+        });
     </script>
 </body>
 

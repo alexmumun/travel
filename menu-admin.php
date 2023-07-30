@@ -3,7 +3,9 @@
                with font-awesome or any other icon font library -->
 
     <li class="nav-item">
-        <a href="../superuser" class="nav-link <?php if ($halaman=='home'){echo 'active';}?>">
+        <a href="../superuser" class="nav-link <?php if ($halaman == 'home') {
+                                                    echo 'active';
+                                                } ?>">
 
             <i class="nav-icon fas fa-home"></i>
             <p>
@@ -13,7 +15,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../superuser-peran" class="nav-link <?php if ($halaman=='peran'){echo 'active';}?>">
+            <a href="../superuser-peran" class="nav-link <?php if ($halaman == 'peran') {
+                                                                echo 'active';
+                                                            } ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Master Peran
@@ -23,7 +27,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../superuser-pengguna" class="nav-link <?php if ($halaman=='pengguna'){echo 'active';}?>">
+            <a href="../superuser-pengguna" class="nav-link <?php if ($halaman == 'pengguna') {
+                                                                echo 'active';
+                                                            } ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Pengguna Administrator
@@ -33,8 +39,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../data-kandang-mitra"
-                class="nav-link <?php if ($halaman=='data-kandang-mitra'){echo 'active';}?>">
+            <a href="../data-kandang-mitra" class="nav-link <?php if ($halaman == 'data-kandang-mitra') {
+                                                                echo 'active';
+                                                            } ?>">
                 <i class="nav-icon fas fa-dumpster"></i>
                 <p>
                     Data Sopir
@@ -44,7 +51,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../Data-Sopir-Travel" class="nav-link <?php if ($halaman=='datasopir'){echo 'active';}?>">
+            <a href="../data_travel" class="nav-link <?php if ($halaman == 'data_travel') {
+                                                            echo 'active';
+                                                        } ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Data Travel
@@ -54,7 +63,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../data-tiket-travel" class="nav-link <?php if ($halaman=='datasopir'){echo 'active';}?>">
+            <a href="../data-tiket-travel" class="nav-link <?php if ($halaman == 'datasopir') {
+                                                                echo 'active';
+                                                            } ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Data Tiket
@@ -64,7 +75,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../kontrak-pembesaran" class="nav-link <?php if ($halaman=='kontrak'){echo 'active';}?>">
+            <a href="../kontrak-pembesaran" class="nav-link <?php if ($halaman == 'kontrak') {
+                                                                echo 'active';
+                                                            } ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                     Data Pemesanan
@@ -73,7 +86,9 @@
         </font>
     </li>
     <!-- <li class="nav-item">
-        <a href="../superuser" class="nav-link <?php if ($halaman=='pesanan'){echo 'active';}?>">
+        <a href="../superuser" class="nav-link <?php if ($halaman == 'pesanan') {
+                                                    echo 'active';
+                                                } ?>">
             <i class="nav-icon fas fa-cash-register"></i>
             <p>
                 Pesanan/Request
@@ -81,7 +96,9 @@
         </a>
     </li> -->
     <!-- <li class="nav-item">
-        <a href="../superuser" class="nav-link <?php if ($halaman=='penjualan'){echo 'active';}?>">
+        <a href="../superuser" class="nav-link <?php if ($halaman == 'penjualan') {
+                                                    echo 'active';
+                                                } ?>">
             <i class="nav-icon fas fa-dollar-sign"></i>
             <p>
                 Penjualan
@@ -89,7 +106,9 @@
         </a>
     </li> -->
     <!-- <li class="nav-item">
-        <a href="../superuser" class="nav-link <?php if ($halaman=='stok-barang'){echo 'active';}?>">
+        <a href="../superuser" class="nav-link <?php if ($halaman == 'stok-barang') {
+                                                    echo 'active';
+                                                } ?>">
             <i class="nav-icon fas fa-hand-peace"></i>
             <p>
                 Stok Barang
@@ -97,7 +116,9 @@
         </a>
     </li> -->
     <li class="nav-item">
-        <a href="../superuser" class="nav-link <?php if ($halaman=='laporan'){echo 'active';}?>">
+        <a href="../superuser" class="nav-link <?php if ($halaman == 'laporan') {
+                                                    echo 'active';
+                                                } ?>">
             <i class="nav-icon fas fa-layer-group"></i>
             <p>
                 Laporan
@@ -106,7 +127,9 @@
     </li>
     <li class="nav-item">
         <font color="#ffffff">
-            <a href="../superuser-gantipass" class="nav-link <?php if ($halaman=='ganti'){echo 'active';}?>">
+            <a href="../superuser-gantipass" class="nav-link <?php if ($halaman == 'ganti') {
+                                                                    echo 'active';
+                                                                } ?>">
                 <i class="nav-icon fas fa-lock"></i>
                 <p>
                     Ganti Password

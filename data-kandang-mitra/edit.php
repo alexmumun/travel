@@ -22,13 +22,14 @@ if (isset($_SESSION['peran']))
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-  
+
 </head>
 
 <body>
-<div class="wrapper">
-  <?php
+    <div class="wrapper">
+        <?php
   
      $id_pemilik       = trim(mysqli_real_escape_string($con, $_POST['id_pemilik']));
      $pemilik          = trim(mysqli_real_escape_string($con, $_POST['pemilik']));
@@ -37,22 +38,20 @@ if (isset($_SESSION['peran']))
      $jumlah_kandang   = trim(mysqli_real_escape_string($con, $_POST['jumlah_kandang']));
 
 
-    $queryupdate = mysqli_query($con, "UPDATE tb_kandang_mitra SET pemilik='$pemilik', alamat_kandang='$alamat_kandang', no_telp='$no_telp', jumlah_kandang='$jumlah_kandang' WHERE id_pemilik='$id_pemilik'") or die (mysqli_eror($con));
+    $queryupdate = mysqli_query($con, "UPDATE tb_kandang_mitra SET pemilik='$pemilik', alamat_kandang='$alamat_kandang', no_telp='$no_telp', jumlah_kandang='$jumlah_kandang' WHERE id_pemilik='$id_pemilik'") or die (mysqli_error($con));
       
   
  
   ?>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-  swal("Update Berhasil", "Data Pengguna berhasil di update", "success");
-  
-  setTimeout(function(){ 
-  window.location.href = "../data_kandang_mitra";
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+        swal("Update Berhasil", "Data Pengguna berhasil di update", "success");
 
-  }, 1000);
-</script>
+        setTimeout(function() {
+            window.location.href = "../data_kandang_mitra";
+
+        }, 1000);
+        </script>
 </body>
+
 </html>
-
-
-       

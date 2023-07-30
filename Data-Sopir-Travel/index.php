@@ -1,25 +1,18 @@
 <?php
 $halaman = 'datasopir';
 require_once "../config/database.php";
-if (isset($_SESSION['id']))
-{
-    if ($_SESSION['peran']!="admin")
-      {
+if (isset($_SESSION['id'])) {
+    if ($_SESSION['peran'] != "admin") {
         unset($_SESSION['peran']);
         unset($_SESSION['username']);
         unset($_SESSION['nama']);
         unset($_SESSION['Id']);
-       echo "<script>window.location='../login/logout.php';</script>";    
-      } 
-      else
-      {
-        
-      }
- }
- else
- {
-   echo "<script>window.location='../login';</script>"; 
- }
+        echo "<script>window.location='../login/logout.php';</script>";
+    } else {
+    }
+} else {
+    echo "<script>window.location='../login';</script>";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +22,8 @@ if (isset($_SESSION['id']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <?php
-  include '../linksheet-admin.php';
-  ?>
+    include '../linksheet-admin.php';
+    ?>
 
 </head>
 
@@ -38,9 +31,9 @@ if (isset($_SESSION['id']))
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="../img/icon.png" alt="UPB" height="200" width="200">
-        </div>
+        </div> -->
 
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -88,8 +81,7 @@ if (isset($_SESSION['id']))
         <aside class="main-sidebar sidebar-dark-white elevation-4" style="background-color: #0000CD;">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link" style="background-color: #ffffff;">
-                <img src="../img/ayam.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: 1.0">
+                <img src="../img/ayam.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: 1.0">
                 <span class="brand-text font-weight-light">
                     <font color="black"><b>Data Sopir</b></font>
                 </span>
@@ -102,8 +94,8 @@ if (isset($_SESSION['id']))
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <?php
-        include '../menu-admin.php';
-        ?>
+                    include '../menu-admin.php';
+                    ?>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
@@ -133,13 +125,10 @@ if (isset($_SESSION['id']))
                                     </h3>
                                 </div>
                                 <div class="card-body">
-                                    <button type="button" class="btn btn-danger btn-md" data-toggle="modal"
-                                        style="background-color:#0000CD;" data-target="#modal-tambah"><i
-                                            class="fas fa-plus"></i>
+                                    <button type="button" class="btn btn-danger btn-md" data-toggle="modal" style="background-color:#0000CD;" data-target="#modal-tambah"><i class="fas fa-plus"></i>
                                         Tambah Data Sopir</button>
 
-                                    <table id="example1" name="example1"
-                                        class="table table-sm table-hover table-bordered table-striped deta">
+                                    <table id="example1" name="example1" class="table table-sm table-hover table-bordered table-striped deta">
                                         <thead>
                                             <tr>
                                                 <th bgcolor="#ffffff" style="width:5%">
@@ -166,103 +155,84 @@ if (isset($_SESSION['id']))
                                         </thead>
                                         <tbody>
                                             <?php
-                     $no  = 1;
-                     $superuser = 'admin';
-                      $query = "SELECT * FROM tb_pengguna ORDER BY Id ASC";
+                                            $no  = 1;
+                                            $superuser = 'admin';
+                                            $query = "SELECT * FROM tb_pengguna ORDER BY Id ASC";
 
-                            $sql_pengguna = mysqli_query($con, $query) or die (mysqli_error($con));
+                                            $sql_pengguna = mysqli_query($con, $query) or die(mysqli_error($con));
 
-                            if (mysqli_num_rows($sql_pengguna) > 0 )
-                            {
-                             while($data = mysqli_fetch_array($sql_pengguna))
-                             {
-                                  ?>
-                                            <tr>
-                                                <td>
-                                                    <?=$no++;?>
-                                                </td>
+                                            if (mysqli_num_rows($sql_pengguna) > 0) {
+                                                while ($data = mysqli_fetch_array($sql_pengguna)) {
+                                            ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?= $no++; ?>
+                                                        </td>
 
 
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['username'];?>
-                                                    </h6>
-                                                </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['username']; ?>
+                                                            </h6>
+                                                        </td>
 
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['Id'];?>
-                                                    </h6>
-                                                </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['Id']; ?>
+                                                            </h6>
+                                                        </td>
 
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['nama'];?>
-                                                    </h6>
-                                                </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['nama']; ?>
+                                                            </h6>
+                                                        </td>
 
-                                                <td>
-                                                    <h6>
-                                                        <?=$data['peran'];?>
-                                                    </h6>
-                                                </td>
+                                                        <td>
+                                                            <h6>
+                                                                <?= $data['peran']; ?>
+                                                            </h6>
+                                                        </td>
 
 
 
-                                                <td>
-                                                    <center>
+                                                        <td>
+                                                            <center>
 
-                                                        <a href="resetpw.php?id=<?=$data['Id'];?>"
-                                                            onclick="return confirm('Anda akan menreset password admin [ <?=$data['nama'];?> ] ? ; Defalut reset password adalah : skripsiupb2022!@#')"
-                                                            class="btn btn-warning btn-xs"><i
-                                                                class="fas fa-history"></i> Reset Password</a>
+                                                                <a href="resetpw.php?id=<?= $data['Id']; ?>" onclick="return confirm('Anda akan menreset password admin [ <?= $data['nama']; ?> ] ? ; Defalut reset password adalah : skripsiupb2022!@#')" class="btn btn-warning btn-xs"><i class="fas fa-history"></i> Reset Password</a>
 
-                                                        <button type="button" class="btn btn-primary btn-xs"
-                                                            data-toggle="modal" data-id="<?=$data['Id']?>"
-                                                            data-user="<?=$data['username']?>"
-                                                            data-nama="<?=$data['nama']?>"
-                                                            data-peran="<?=$data['peran']?>"
-                                                            data-target="#modal-edit"><i class="fas fa-edit"></i>
-                                                        </button>
+                                                                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-id="<?= $data['Id'] ?>" data-user="<?= $data['username'] ?>" data-nama="<?= $data['nama'] ?>" data-peran="<?= $data['peran'] ?>" data-target="#modal-edit"><i class="fas fa-edit"></i>
+                                                                </button>
 
 
 
-                                                        <?php
-                                $idsession     = $_SESSION['id'];
-                                $idlogin       = $data['Id'];
-                               
+                                                                <?php
+                                                                $idsession     = $_SESSION['id'];
+                                                                $idlogin       = $data['Id'];
 
-                                if ($idsession==$idlogin)
-                                {
-                                    
-                                }
-                                else
-                                {
-                                  ?>
 
-                                                        <a href="hapus.php?id=<?=$data['Id'];?>"
-                                                            onclick="return confirm('Anda akan menghapus data admin  [ <?=$data['nama'];?> ] ?')"
-                                                            class="btn btn-danger btn-xs"><i class="fas fa-trash"></i>
-                                                        </a>
-                                                </td>
-                                                </center>
+                                                                if ($idsession == $idlogin) {
+                                                                } else {
+                                                                ?>
 
-                                                <?php
-                                }       
+                                                                    <a href="hapus.php?id=<?= $data['Id']; ?>" onclick="return confirm('Anda akan menghapus data admin  [ <?= $data['nama']; ?> ] ?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i>
+                                                                    </a>
+                                                        </td>
+                                                        </center>
 
-                               ?>
-                                            </tr>
+                                                    <?php
+                                                                }
+
+                                                    ?>
+                                                    </tr>
 
                                             <?php
-                            }
+                                                }
+                                            } else {
+                                                echo "<tr><td colspan=\"11\" align=\"center\"><h6>Data Tidak Ditemukan!</h6></td></tr>";
+                                            }
 
-                          }
-                          else
-                          {
-                            echo "<tr><td colspan=\"11\" align=\"center\"><h6>Data Tidak Ditemukan!</h6></td></tr>";
-                          }
-
-                            ?>
+                                            ?>
 
 
 
@@ -304,11 +274,9 @@ if (isset($_SESSION['id']))
                                         <!-- form start -->
                                         <div class="card-body">
                                             <div class="form-group row">
-                                                <label for="inputEmail3"
-                                                    class="col-sm-12 control-label">Username</label>
+                                                <label for="inputEmail3" class="col-sm-12 control-label">Username</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="user" id="user"
-                                                        required>
+                                                    <input type="text" class="form-control" name="user" id="user" required>
                                                 </div>
                                             </div>
 
@@ -316,44 +284,35 @@ if (isset($_SESSION['id']))
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Nama
                                                     Admin</label>
                                                 <div class="col-sm-12">
-                                                    <input type="text" class="form-control" name="nama" id="nama"
-                                                        required>
+                                                    <input type="text" class="form-control" name="nama" id="nama" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Peran</label>
                                                 <div class="col-sm-12">
-                                                    <select type="text" class="from-control" name="peran" id="peran"
-                                                        required>
+                                                    <select type="text" class="from-control" name="peran" id="peran" required>
                                                         <?php
-                                        $queryperan = "SELECT * FROM tb_master_peran ORDER BY id ASC";
-                                        $sql_peran = mysqli_query($con, $queryperan) or die (mysqli_error($con));
-                                        if (mysqli_num_rows($sql_peran) > 0 )
-                                        {
-                                         while($dataperan = mysqli_fetch_array($sql_peran))
-                                          {
-                                            ?>
-                                                        <option value="<?=$dataperan['peran'];?>">
-                                                            <?=$dataperan['peran'];?></option>
+                                                        $queryperan = "SELECT * FROM tb_master_peran ORDER BY id ASC";
+                                                        $sql_peran = mysqli_query($con, $queryperan) or die(mysqli_error($con));
+                                                        if (mysqli_num_rows($sql_peran) > 0) {
+                                                            while ($dataperan = mysqli_fetch_array($sql_peran)) {
+                                                        ?>
+                                                                <option value="<?= $dataperan['peran']; ?>">
+                                                                    <?= $dataperan['peran']; ?></option>
                                                         <?php
-                                          }
-                                        }
-                                        else
-                                        {
-
-                                        }
-                                        ?>
+                                                            }
+                                                        } else {
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="inputEmail3"
-                                                    class="col-sm-12 control-label">Password</label>
+                                                <label for="inputEmail3" class="col-sm-12 control-label">Password</label>
                                                 <div class="col-sm-12">
-                                                    <input type="password" class="form-control" name="pw" id="pw"
-                                                        required>
+                                                    <input type="password" class="form-control" name="pw" id="pw" required>
                                                     <input type="checkbox" onclick="myFunction()"> Tampilkan Password
                                                 </div>
                                             </div>
@@ -361,8 +320,7 @@ if (isset($_SESSION['id']))
                                                 <label for="inputEmail3" class="col-sm-12 control-label">Ketik Ulang
                                                     Password</label>
                                                 <div class="col-sm-12">
-                                                    <input type="password" class="form-control" name="pw2" id="pw2"
-                                                        required>
+                                                    <input type="password" class="form-control" name="pw2" id="pw2" required>
                                                     <input type="checkbox" onclick="myFunction2()"> Tampilkan Password
                                                 </div>
                                             </div>
@@ -372,12 +330,9 @@ if (isset($_SESSION['id']))
 
 
                                         <!-- /.card-body -->
-                                        <div class="modal-footer justify-content-between"
-                                            style="background-color:#e5eaf0;">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i
-                                                    class="fas fa-times"></i></button>
-                                            <button type="submit" name="insertdata" class="btn btn-secondary"
-                                                style="background-color:#860a0e"><i class="fas fa-download"></i> Simpan
+                                        <div class="modal-footer justify-content-between" style="background-color:#e5eaf0;">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                                            <button type="submit" name="insertdata" class="btn btn-secondary" style="background-color:#860a0e"><i class="fas fa-download"></i> Simpan
                                                 Data</button>
                                         </div>
                                     </div>
@@ -418,8 +373,7 @@ if (isset($_SESSION['id']))
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-12 control-label">Username</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="usered2" id="usered2"
-                                                disabled>
+                                            <input type="text" class="form-control" name="usered2" id="usered2" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -433,10 +387,8 @@ if (isset($_SESSION['id']))
 
                                 <!-- /.card-body -->
                                 <div class="modal-footer justify-content-between" style="background-color:#e5eaf0;">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i
-                                            class="fas fa-times"></i></button>
-                                    <button type="submit" name="editmodal" class="btn btn-secondary"
-                                        style="background-color:#860a0e"><i class="fas fa-edit"></i> Edit Data</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                                    <button type="submit" name="editmodal" class="btn btn-secondary" style="background-color:#860a0e"><i class="fas fa-edit"></i> Edit Data</button>
                                 </div>
                             </div>
                 </form>
@@ -455,37 +407,37 @@ if (isset($_SESSION['id']))
 
     </div>
     <?php
-  include '../footer.php';
-  ?>
+    include '../footer.php';
+    ?>
 
     <aside class="control-sidebar control-sidebar-dark">
     </aside>
     </div>
 
     <?php
-  include '../script-admin.php';
-  ?>
+    include '../script-admin.php';
+    ?>
 
 
     <script type="text/javascript">
-    $('#modal-edit').on('show.bs.modal', function(e) {
+        $('#modal-edit').on('show.bs.modal', function(e) {
 
-        //get data-id attribute of the clicked element
+            //get data-id attribute of the clicked element
 
-        var id = $(e.relatedTarget).data('id');
-        var username = $(e.relatedTarget).data('user');
-        var nama = $(e.relatedTarget).data('nama');
-
-
-        $(e.currentTarget).find('input[name="ided"]').val(id);
-        $(e.currentTarget).find('input[name="usered"]').val(username);
-        $(e.currentTarget).find('input[name="namaed"]').val(nama);
-        $(e.currentTarget).find('input[name="usered2"]').val(username);
+            var id = $(e.relatedTarget).data('id');
+            var username = $(e.relatedTarget).data('user');
+            var nama = $(e.relatedTarget).data('nama');
 
 
+            $(e.currentTarget).find('input[name="ided"]').val(id);
+            $(e.currentTarget).find('input[name="usered"]').val(username);
+            $(e.currentTarget).find('input[name="namaed"]').val(nama);
+            $(e.currentTarget).find('input[name="usered2"]').val(username);
 
 
-    });
+
+
+        });
     </script>
 </body>
 
